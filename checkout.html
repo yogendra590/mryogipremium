@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | MrYogi Premium Subscriptions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+        }
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 40px;
+            margin: 0;
+        }
+        .cta-button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+        .checkout-container {
+            margin: 40px auto;
+            max-width: 600px;
+        }
+        .card {
+            border: none;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Checkout | MrYogi Premium Subscriptions</h1>
+        <p>Complete your purchase and enjoy unlimited access to your favorite digital content!</p>
+    </header>
+
+    <div class="container checkout-container">
+        <div class="card">
+            <h2 class="card-title text-center">Order Summary</h2>
+
+            <!-- Order Summary Section -->
+            <div class="row">
+                <div class="col-12">
+                    <p><strong>Selected Plan:</strong> <span id="selected-plan">Netflix 1 Month - ₹179</span></p>
+                    <p><strong>Price:</strong> ₹<span id="selected-price">179</span></p>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- User Information Form -->
+            <form action="payment.html" method="post">
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" class="form-control" name="full-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-control" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address (For Netflix or other services)</label>
+                    <input type="email" id="email" class="form-control" name="email" required>
+                </div>
+
+                <!-- Payment Information -->
+                <h4 class="mt-4">Payment Method</h4>
+                <div class="form-group">
+                    <label for="payment-method">Select Payment Method</label>
+                    <select class="form-control" id="payment-method" name="payment-method" required>
+                        <option value="upi">UPI (mryogipremium@ybl)</option>
+                        <option value="bank-transfer">Bank Transfer</option>
+                    </select>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="terms" required>
+                    <label class="form-check-label" for="terms">I agree to the <a href="terms.html">Terms and Conditions</a></label>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="cta-button">Complete Purchase</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 MrYogi Premium Subscriptions. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to dynamically set the plan and price
+        window.onload = function() {
+            // Check if we have plan data from URL or previous page
+            const urlParams = new URLSearchParams(window.location.search);
+            const planName = urlParams.get('planName');
+            const planPrice = urlParams.get('planPrice');
+
+            if (planName && planPrice) {
+                document.getElementById('selected-plan').textContent = planName;
+                document.getElementById('selected-price').textContent = planPrice;
+            }
+        }
+    </script>
+
+</body>
+</html>
