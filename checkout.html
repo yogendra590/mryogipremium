@@ -44,9 +44,6 @@
             font-size: 24px;
             margin-bottom: 20px;
         }
-        .form-group label {
-            font-weight: bold;
-        }
         .footer {
             background-color: #2c3e50;
             color: white;
@@ -78,7 +75,7 @@
             <hr>
 
             <!-- User Information Form -->
-            <form action="payment.html" method="post">
+            <form id="checkout-form" method="post">
                 <div class="form-group">
                     <label for="full-name">Full Name</label>
                     <input type="text" id="full-name" class="form-control" name="full-name" required>
@@ -87,28 +84,15 @@
                     <label for="phone">Phone Number</label>
                     <input type="tel" id="phone" class="form-control" name="phone" required>
                 </div>
+
                 <div class="form-group">
                     <label for="email">Email Address (For Netflix or other services)</label>
                     <input type="email" id="email" class="form-control" name="email" required>
                 </div>
 
-                <!-- Payment Information -->
-                <h4 class="mt-4">Payment Method</h4>
-                <div class="form-group">
-                    <label for="payment-method">Select Payment Method</label>
-                    <select class="form-control" id="payment-method" name="payment-method" required>
-                        <option value="upi">UPI (mryogipremium@ybl)</option>
-                        <option value="bank-transfer">Bank Transfer</option>
-                    </select>
-                </div>
-
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="terms" required>
-                    <label class="form-check-label" for="terms">I agree to the <a href="terms.html">Terms and Conditions</a></label>
-                </div>
-
                 <div class="text-center mt-4">
-                    <button type="submit" class="cta-button">Complete Purchase</button>
+                    <!-- Complete Purchase Button with redirection -->
+                    <a href="payment.html?planName=<span id='selected-plan'></span>&planPrice=<span id='selected-price'></span>" class="cta-button">Complete Purchase</a>
                 </div>
             </form>
         </div>
@@ -121,7 +105,6 @@
     <script>
         // Function to dynamically set the plan and price
         window.onload = function() {
-            // Check if we have plan data from URL or previous page
             const urlParams = new URLSearchParams(window.location.search);
             const planName = urlParams.get('planName');
             const planPrice = urlParams.get('planPrice');
