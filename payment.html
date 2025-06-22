@@ -36,15 +36,26 @@
         }
         .upi-id-box {
             background-color: #e9ecef;
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
-            font-size: 18px;
+            text-align: center;
+            font-size: 20px;
             font-weight: bold;
-            color: #495057;
         }
         .qr-code {
             text-align: center;
             margin-top: 20px;
+        }
+        .download-qr-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .download-qr-btn:hover {
+            background-color: #2980b9;
         }
         .footer {
             background-color: #2c3e50;
@@ -53,13 +64,13 @@
             text-align: center;
             margin-top: 40px;
         }
-        .note {
-            background-color: #f8d7da;
-            padding: 15px;
-            border-radius: 8px;
-            color: #721c24;
+        .copy-btn {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
             margin-top: 20px;
-            font-size: 16px;
         }
     </style>
 </head>
@@ -68,35 +79,57 @@
     <div class="container payment-container">
         <h2 class="text-center">Complete Your Payment</h2>
 
+        <!-- Order Summary -->
         <div class="payment-box">
-            <p><strong>Pay to:</strong></p>
-            <div class="upi-id-box">
+            <h3>Order Summary</h3>
+            <p><strong>Plan:</strong> <span id="selected-plan">Netflix 1 Month</span></p>
+            <p><strong>Price:</strong> ₹<span id="selected-price">179</span></p>
+        </div>
+
+        <!-- UPI Payment Information -->
+        <div>
+            <h4>Pay to:</h4>
+            <div class="upi-id-box" id="upi-id-box">
                 mryogipremium@ybl
             </div>
+            <!-- Copy UPI ID Button -->
+            <button class="copy-btn" onclick="copyUPI()">Copy UPI ID</button>
         </div>
 
         <!-- QR Code Section -->
         <div class="qr-code">
-            <p>Scan the QR code below to pay:</p>
-            <!-- QR Code image (this will be dynamic, link to the uploaded QR code file) -->
-            <img src="/mnt/data/file-1VVrWeUwn8wt8W7dPK5vFi" alt="PhonePe QR Code" style="width: 200px; height: 200px;">
+            <p>Scan the QR code below to complete the payment:</p>
+            <!-- QR Code Image (Uploaded QR code file) -->
+            <img src="/mnt/data/file-S54sxkSMD54XbgyAcAkRqX" alt="PhonePe QR Code" style="width: 200px; height: 200px;">
+            <br>
+            <!-- Download QR Code Button -->
+            <a href="/mnt/data/file-S54sxkSMD54XbgyAcAkRqX" download class="download-qr-btn">Download QR Code</a>
         </div>
 
+        <!-- Note Section -->
         <div class="text-center mt-4">
-            <!-- Pay Now button to redirect to UPI payment apps -->
-            <a href="upi://pay?pa=mryogipremium@ybl&pn=MrYogi%20Premium&mc=1234&tid=2025&tr=planName&am=price&cu=INR" class="cta-button" target="_blank">Pay Now</a>
-        </div>
-
-        <!-- Note for sending the payment screenshot -->
-        <div class="note">
-            <p><strong>Important:</strong> After making the payment, please send a screenshot of your payment to our WhatsApp number to activate your subscription.</p>
-            <p><strong>WhatsApp Number:</strong> <a href="https://wa.me/8618388937" target="_blank">+91 86183 88937</a></p>
+            <p><strong>Note:</strong> After making the payment, please send a screenshot of your payment to our WhatsApp number to activate your subscription.</p>
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/8618388937" target="_blank">+91 86183 88937</a></p>
         </div>
     </div>
 
     <footer class="footer">
         <p>&copy; 2025 MrYogi Premium Subscriptions. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Function to copy UPI ID
+        function copyUPI() {
+            var copyText = document.getElementById("upi-id-box");
+            var textArea = document.createElement("textarea");
+            textArea.value = copyText.innerText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            alert("UPI ID copied: " + textArea.value);
+        }
+    </script>
 
 </body>
 </html>
