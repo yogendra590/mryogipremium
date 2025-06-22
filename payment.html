@@ -129,6 +129,20 @@
             document.body.removeChild(textArea);
             alert("UPI ID copied: " + textArea.value);
         }
+
+        // Dynamically update the plan and price
+        // Example: You can change the plan dynamically based on URL parameters or user choice
+        window.onload = function() {
+            // Example: If the URL has a 'plan' and 'price' parameter, update the page
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedPlan = urlParams.get('plan'); // e.g., "Netflix 1 Month"
+            const selectedPrice = urlParams.get('price'); // e.g., "179"
+
+            if (selectedPlan && selectedPrice) {
+                document.getElementById('selected-plan').innerText = selectedPlan;
+                document.getElementById('selected-price').innerText = selectedPrice;
+            }
+        };
     </script>
 
 </body>
